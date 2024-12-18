@@ -9,26 +9,20 @@
 <h4 align="center">Proyecto base de <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
 
 <p align="center">
-  <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">
-    <img src="https://img.shields.io/badge/Java-11+-orange.svg" alt="Java">
+  <a href="https://nodejs.org/">
+    <img src="https://img.shields.io/badge/Node.js-20+-green.svg" alt="Node.js">
   </a>
-  <a href="https://www.mysql.com/">
-    <img src="https://img.shields.io/badge/Database-MySQL-blue.svg" alt="MySQL">
+  <a href="https://playwright.dev/">
+    <img src="https://img.shields.io/badge/Playwright-Testing_Tool-blue.svg" alt="Playwright">
   </a>
-  <a href="https://www.postgresql.org/">
-    <img src="https://img.shields.io/badge/Database-PostgreSQL-blue.svg" alt="PostgreSQL">
+  <a href="https://www.typescriptlang.org/">
+    <img src="https://img.shields.io/badge/TypeScript-Programming_Language-lightblue.svg" alt="TypeScript">
   </a>
-  <a href="https://www.w3schools.com/sql/">
-    <img src="https://img.shields.io/badge/SQL-Fundamentals-lightgrey.svg" alt="SQL">
+  <a href="https://dotenv.org/">
+    <img src="https://img.shields.io/badge/Dotenv-Environment_Variables-brightgreen.svg" alt="Dotenv">
   </a>
-  <a href="https://cucumber.io/">
-    <img src="https://img.shields.io/badge/Cucumber-BDD-green.svg" alt="Cucumber">
-  </a>
-  <a href="https://serenity-bdd.info/">
-    <img src="https://img.shields.io/badge/Serenity-Reporting-blueviolet.svg" alt="Serenity">
-  </a>
-  <a href="https://www.selenium.dev/">
-    <img src="https://img.shields.io/badge/Selenium-Web_Testing-brightgreen.svg" alt="Selenium">
+  <a href="https://github.com/microsoft/playwright">
+    <img src="https://img.shields.io/badge/Playwright_Report-Reporting-orange.svg" alt="Playwright Report">
   </a>
 </p>
 
@@ -80,7 +74,7 @@ git push -u origin master
 ```
 Nota: Asegúrate de reemplazar URL_DE_TU_NUEVO_REPOSITORIO con la URL del repositorio que creaste en tu cuenta de GitHub.
 
-Puedes descargar el proyecto en el enlace [download](https://github.com/somospragma/qa-backend-playwright-apis) 
+Puedes descargar el proyecto en el enlace [download](https://github.com/somospragma/qa-backend-playwright-clean-architecture-pattern/archive/refs/heads/master.zip) 
 
 ## Instalación y ejecución
 
@@ -128,7 +122,7 @@ Node ENV=.env.prod
 ## Autores
 
 
-| [<img src="https://avatars.githubusercontent.com/u/68761366?s=400&u=bb480144244c256aabbdebb801c17709fae5a904&v=4" width=115><br><sub>David Bonett</sub>](https://github.com/davito19) |  [<img src="https://gitlab.com/uploads/-/system/user/avatar/13437423/avatar.png?width=400" width=115><br><sub>Mauro L. Ibarra P.</sub>](https://gitlab.com/mauro.ibarrap) <br/>  | 
+| [<img src="https://avatars.githubusercontent.com/u/68761366?s=400&u=bb480144244c256aabbdebb801c17709fae5a904&v=4" width=115><br><sub>David Bonett</sub>](https://github.com/davito19) | | 
 :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 
 

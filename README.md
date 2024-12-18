@@ -8,8 +8,6 @@
 
 <h4 align="center">Proyecto base de <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
 
-De aca en adelante encontraras las partes del readme con un pequeño ejemplo dentro de cada una de ellas, actualiza su contenido (no olvides borrar esta línea)
-
 <p align="center">
   <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">
     <img src="https://img.shields.io/badge/Java-11+-orange.svg" alt="Java">
@@ -34,7 +32,9 @@ De aca en adelante encontraras las partes del readme con un pequeño ejemplo den
   </a>
 </p>
 
-Redacta aca una breve descripcion del proyecto...
+## Description
+Este proyecto utiliza Playwright para automatizar pruebas backend. Proporciona una estructura base para ejecutar pruebas de APIs con configuraciones flexibles que se adaptan a diferentes entornos mediante el uso de variables de entorno.
+
 
 <p align="center">
   <a href="#topicos">Topicos</a> •
@@ -47,133 +47,96 @@ Redacta aca una breve descripcion del proyecto...
   <a href="#roadmap">Roadmap</a>
 </p>
 
-El siguiente GIF es de ejemplo, si tienes uno propio reemplazalo, de lo contrario eliminalo.
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
 ## Topicos
 
-* Java
-* Bases de datos
-* SQL
-* Cucumber
-* Serenity
-* Selenium
+* Node.js
+* TypeScript
+* Playwright
+* Apis
 
 ## Tecnologias
 ### This project required:
-- [JDK java] version 16
-- [Serenity] version 4
-- [Gradle] last version
-
-Nota: 
-*   Se requiere Selenium posterior a la version 4.11 para la descarga automatica de algunos drivers de los navegadores
-    La version de Serenity implementada (4.0.0) ya incluye Selenium 4.12 lo cual soporta los navegadores a Octubre del 2023
-    si el proyecto presenta problemas relacionados a las version del driver descargado de forma automatica y la version de su 
-    navegador vale la pena revisar que este trabajando con versiones recientes de Serenity y checkear las versiones de Selenium
-    incluidas en dicha version de Serenity
-*   Con Selenium Manager incluido en Serenity 4.0.0 ya no se requiere WebDriverManager de Boni Garcia, razon por la cual ya
-    serenity no lo incluye dentro de sus dependencias
+- [Node.js] version 20 o superior
+- [playwright] Instalado como dependencia del proyecto
+ 
 
 ## Consideraciones
-- Para hacer uso de la la utilidad de Base de Datos es importante 
-        que se instacie una Base de datos y se configura en el archivo de configuración ubicado en:
+- Verifique que las versiones de las dependencias y herramientas (Node.js, Playwright) sean compatibles con las especificaciones del proyecto.
+- Asegúrese de configurar correctamente las variables de entorno en el archivo .env para cada ambiente (desarrollo, prueba, producción).
+- Los reportes generados se almacenan en el directorio   `playwright-report`. Es importante revisarlos para analizar errores o validaciones fallidas.
+- Si su entorno no soporta ejecuciones paralelas, modifique la configuración en `playwright.config.ts` para establecer un número menor de workers.
 
-            ./src/main/resources/configs/congig.properties
-
-        En las dependencias del proyecto esta agregada la dependencia del driver de MySQL, si no 
-        desea realizar mayores ajustes respecto al motor de BD use MySQL. Si desea usar otro motor, 
-        adiciones la dependencia del driver al build.gradle y configure este driver como observa 
-        se realizo para MySQL en: 
-    
-            ./src/main/java/utils/ConectionBD.java
-        
-        Nota: Algunos motores de BD no requieren agregar la dependencia del driver como Oracle o MSserver
 
 ## Descarga
 Para clonar está aplicación desde la linea de comando:
 
 ```bash
-git clone https://github.com/somospragma/qa-transversal-proyecto-base-manejo-base-de-datos-java
-cd qa-transversal-proyecto-base-manejo-base-de-datos-java
+git clone https://github.com/somospragma/qa-backend-playwright-apis.git
+cd qa-backend-playwright-apis
 git remote remove origin
 git remote add origin URL_DE_TU_NUEVO_REPOSITORIO
 git push -u origin master
 ```
 Nota: Asegúrate de reemplazar URL_DE_TU_NUEVO_REPOSITORIO con la URL del repositorio que creaste en tu cuenta de GitHub.
 
-Puedes descargar el proyecto en el enlace [download](https://github.com/somospragma/qa-transversal-proyecto-base-manejo-base-de-datos-java) 
+Puedes descargar el proyecto en el enlace [download](https://github.com/somospragma/qa-backend-playwright-apis) 
 
 ## Instalación y ejecución
 
-Para ejecutar está aplicación, necesitas [Gradle](https://gradle.org/install) and [Java JDK](https://www.oracle.com/java/technologies/downloads/) instalados en tu equipo, ten en cuenta que tu IDE puede gestionar la instalación de estos dos requerimientos. Desde la linea de comando:
+Para ejecutar está aplicación, necesitas [Node](https://nodejs.org/es) instalado en tu equipo.
 
+##  🛠️ Ejecución de test con Node:
 ```
-gradle clean build
-```
-
-##  🛠️ Run tests Chrome gradle:
-```
-gradle clean test -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test --info --stacktrace --tests "ruta.nameRunner" -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test -Dcucumber.options="--tags @someTag" -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test -Dcucumber.options="--tags '@someTag or @someTag'" -Dcontext=chrome -Dwebdriver.driver=chrome
+npm install
+npx playwright test
+npx playwright test tests/<nombre-directorio>
+npx playwright show-report
+npx playwright test --grep @<tag>
+ENV=.env.test npx playwright test
 ```
 
 Nota:
 
-*   Si ejecuta en la consola de gradle no debe usar comillas simples '...' para encerrar '-Dwebdriver.driver=chrome'
-*   Si ejecuta en la consola estándar de la máquina quizás si deba utilizar '...' en las porciones del comando que incluyan puntos
-*   Con "./gradlew test ..." ejecuta el gradle compilado del proyecto
-*   Con "gradle test ..." ejecuta el gradle de su maquina, el configurado en las variables de entorno de su sistema operativo
+*   Se recomienda configurar un script en `packeage.json` para facilitar el uso de ambientes:
+```
+"scripts": {
+  "test:dev": "ENV=.env.dev npx playwright test",
+  "test:test": "ENV=.env.test npx playwright test",
+  "test:prod": "ENV=.env.prod npx playwright test"
+}
+``` 
+
 
 
 ### ejemplo
 ```
-./gradlew clean test --info --stacktrace --tests "co.com.pragma.runners.CompareImageRunner" -Dcontext=chrome '-Dwebdriver.driver=chrome'
-./gradlew clean test --info --stacktrace --tests "co.com.pragma.runners.LoginRunner" -Dcontext=chrome '-Dwebdriver.driver=chrome'
+ENV=.env.dev npx playwright test --grep @critical
 ```
 
 
-##  🛠️ Run tests Firefox gradle:
+## **Ejecución en diferentes ambientes:**
 ```
-./gradlew clean test -Dcontext=firefox '-Dwebdriver.driver=firefox'
-./gradlew test --tests "runners.RunnerTags" '-Dcontext=firefox -Dwebdriver.driver=firefox'
+Node ENV=.env.dev
+Node ENV=.env.qa
+Node ENV=.env.prod
 ```
-### ejemplo
-```
-./gradlew clean test --info --stacktrace --tests "runners.RunnerTags" '-Dcontext=firefox -Dwebdriver.driver=firefox'
-```
-
-## **Run tests in different environments:**
-```
-gradle command... -Denvironment=defaul
-gradle command... -Denvironment=dev
-gradle command... -Denvironment=qa
-gradle command... -Denvironment=prod
-```
-### Note: 
-    - The default environment will be used if no other value is provided
-    - Could modify the environment urls in .../test/resources/serenity.conf
-
-
-## **Run tests in different browser:**
-```
-gradle command... -Dwebdriver.driver=chrome
-gradle command... -Dwebdriver.driver=firefox
-gradle command... -Dwebdriver.driver=edge
-```
+### Notas: 
+    - el ambiente por defecto es el configurado en el `playwright.config.ts`
 
 
 ## Autores
 
 
-| [<img src="https://gitlab.com/uploads/-/system/user/avatar/13437423/avatar.png?width=400" width=115><br><sub>Mauro L. Ibarra P.</sub>](https://gitlab.com/mauro.ibarrap) <br/> | [<img src="https://secure.gravatar.com/avatar/23b2db02403d79ebd356e8e8356758ec?s=192&d=identicon" width=115><br><sub>Otro autor</sub>](https://gitlab.com/) | 
+| [<img src="https://avatars.githubusercontent.com/u/68761366?s=400&u=bb480144244c256aabbdebb801c17709fae5a904&v=4" width=115><br><sub>David Bonett</sub>](https://github.com/davito19) |  [<img src="https://gitlab.com/uploads/-/system/user/avatar/13437423/avatar.png?width=400" width=115><br><sub>Mauro L. Ibarra P.</sub>](https://gitlab.com/mauro.ibarrap) <br/>  | 
 :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 
 
 ## Relacionados
 
-- [proyecto-base-serenity-bdd-screenplay-browsers-and-utilities](https://github.com/somospragma/qa-web-proyecto-base-serenity-bdd-screenplay-browsers-and-utilities)
+- [qa-backend-playwright-clean-architecture-pattern](https://github.com/somospragma/qa-backend-playwright-clean-architecture-pattern)
+- [qa-web-proyecto-base-playwright-screenplay](https://github.com/somospragma/qa-web-proyecto-base-playwright-screenplay)
+- [qa-web-proyecto-base-playwright-pom-bdd](https://github.com/somospragma/qa-web-proyecto-base-playwright-pom-bdd)
 
 
 ## Roadmap
